@@ -2,7 +2,9 @@ FROM alpine:latest
 RUN apk add bash
 RUN apk add aws-cli 
 RUN apk add npm
+RUN apk add py3-pip
 RUN npm install -g aws-cdk -y
+RUN pip3 install --user aws-cdk-lib --break-system-packages
 COPY ./creds.sh /root/creds.sh
 RUN chmod +x /root/creds.sh
 ENTRYPOINT ["/root/creds.sh"]
